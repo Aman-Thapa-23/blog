@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from home.forms import ContactForm
-
+from bookblog.models import LoggedInUser
 # Create your views here.
 #main homepage 
 def home(request):
@@ -88,11 +88,13 @@ def handlelogin(request):
 
         user = authenticate(username=loginusername, password=loginpassword)
         if user is not None:
-            login(request, user)
-            messages.success(request, 'Successfully Logged In')
+            if LoggedInUser.objects.filter(user_id=user.id).exists():
+                messages.error(request, 'User is already logged in')
+            else:
+                login(request, user)
+                messages.success(request, 'Successfully Logged In')
         else:
             messages.error(request, 'Invalid Credentials, Please Try Again')
-    
     return redirect('home')
 
 def handlelogout(request):

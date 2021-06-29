@@ -33,4 +33,14 @@ class LoggedInUser(models.Model):
 
     def __str__(self):
         return self.user.username
+        
+class Contact(models.Model):
+    user = models.ForeignKey(
+        User, related_name='friends', on_delete=models.CASCADE)
+    friends = models.ManyToManyField(User)
+
+    def __str__(self):
+        return self.user.username
+        
+        
 
