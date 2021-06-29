@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'bookblog.apps.BookblogConfig',
-    'home',
+    'home.apps.HomeConfig',
+    'bookblog',
     'django.contrib.humanize',
     'drf_messaging',
     'fcm_django',
@@ -57,7 +57,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'bookblog.middlewares.OneSessionPerUser',
+    'home.middlewares.OneSessionPerUser',
 
 ]
 

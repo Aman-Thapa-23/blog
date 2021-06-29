@@ -82,6 +82,18 @@ def handleSignup(request):
 
 
 def handlelogin(request):
+    # if request.method =="POST":
+    #     loginusername = request.POST['loginusername']
+    #     loginpassword = request.POST['loginpass']
+
+    #     user = authenticate(username=loginusername, password=loginpassword)
+    #     if user is not None:
+    #         login(request, user)
+    #         messages.success(request, 'Successfully Logged In')
+    #     else:
+    #         messages.error(request, 'Invalid Credentials, Please Try Again')
+    
+    # return redirect('home')
     if request.method =="POST":
         loginusername = request.POST['loginusername']
         loginpassword = request.POST['loginpass']
@@ -97,7 +109,11 @@ def handlelogin(request):
             messages.error(request, 'Invalid Credentials, Please Try Again')
     return redirect('home')
 
+    return redirect('home')
 def handlelogout(request):
+    # current_session = request.user.logged_in_user.session_key
+    # user = request.user
+    # LoggedInUser.objects.get(user=user ,session_key = current_session).delete()
     logout(request)
     messages.success(request, 'Successfully Logged Out')
     return redirect('home')
